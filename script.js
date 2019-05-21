@@ -1,77 +1,32 @@
-//let matrix = [];
-// let rows = 55;
-// let columns = 70;
-
-// for (let y = 0; y < rows; y++) {
-//     matrix[y] = [];
-//     for (let x = 0; x < columns; x++) {
-//         let a = Math.floor(Math.random() * 100);
-//         if (a >= 0 && a < 10) {
-//             matrix[y][x] = 0;
-//         }
-//         if (a >= 10 && a < 30) {
-//             matrix[y][x] = 1;
-//         }
-//         else if (a >= 30 && a < 80) {
-//             matrix[y][x] = 2;
-//         }
-//         else if (a >= 80 && a < 87) {
-//             matrix[y][x] = 3;
-//         }
-//         else if (a >= 87 && a < 99) {
-//             matrix[y][x] = 4;
-//         }
-//         else if (a >= 99 && a < 100) {
-//             matrix[y][x] = 5;
-//         }
-//     }
-// }
-// let side = 15;
-// let grassArr = [];
-// let eatArr = [];
-// let gishatichArr = [];
-// let jurArr = [];
-// let mardArr = [];
+let h = 50;
+let w = 50;
+let matrix = [];
+let socket = io();
+let side = 15;
 
 function setup() {
-    let matrix = [];
-    let socket = io();
-    let side = 15;
     frameRate(5);
-    let grassCount = document.getElementById('grassCount');
-    let grassEaterCount = document.getElementById('grassEaterCount');
-    let predatorCount = document.getElementById('predatorCount');
-    let waterCount = document.getElementById('water');
-    let peopleCount = document.getElementById('people');
-//     createCanvas(matrix[0].length * side, matrix.length * side);
-//     background('#acacac');
-//     for (var y = 0; y < matrix.length; ++y) {
-//         for (var x = 0; x < matrix[y].length; ++x) {
-//             if (matrix[y][x] == 1) {
-//                 var gr = new Grass(x, y);
-//                 grassArr.push(gr);
-//             }
-//             else if (matrix[y][x] == 2) {
-//                 let eatgrass = new Eatgrass(x, y);
-//                 eatArr.push(eatgrass);
-//             }
-//             else if (matrix[y][x] == 3) {
-//                 let gishatich = new Predator(x, y);
-//                 gishatichArr.push(gishatich);
-//             }
-//             else if (matrix[y][x] == 4) {
-//                 let norjur = new Jur(x, y);
-//                 jurArr.push(norjur);
-//             }
-//             else if (matrix[y][x] == 5) {
-//                 let mard = new Mard(x, y);
-//                 mardArr.push(mard);
-//             }
-//         }
-//     }
-
-
-// }
+        for (let y = 0; y < h; y++) {
+            matrix[y] = [];
+            for (let x = 0; x < w; x++) {
+                let rand = random(100);
+                let index = 0;
+                if (rand < 30) index = 0;
+                else if (rand < 55) index = 1;
+                else if (rand < 75) index = 2;
+                else if (rand < 95) index = 3;
+                else if (rand < 99) index = 4;
+                else if (rand < 99.9) index = 5;
+                // else if (rand <= 100) index = 6;
+                matrix[y][x] = index;               
+                }
+        }
+    
+    // let grassCount = document.getElementById('grassCount');
+    // let grassEaterCount = document.getElementById('grassEaterCount');
+    // let predatorCount = document.getElementById('predatorCount');
+    // let waterCount = document.getElementById('water');
+    // let peopleCount = document.getElementById('people');
 
 socket.on("data", creating);
 

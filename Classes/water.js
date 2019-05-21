@@ -1,4 +1,5 @@
-class Jur extends LivingCreature {
+let LivingCreature = require("./LivingCreature")
+module.exports = class Jur extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.x = x;
@@ -16,7 +17,7 @@ class Jur extends LivingCreature {
     }
     move() {
         var fundCords = this.chooseCell(0);
-        var cord = random(fundCords);
+        var cord = Math.floor(Math.random(fundCords));
 
         if (cord) {
             var x = cord[0];

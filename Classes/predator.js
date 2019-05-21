@@ -1,4 +1,5 @@
-class Predator extends LivingCreature {
+let LivingCreature = require("./LivingCreature")
+module.exports = class Predator extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.x = x;
@@ -17,7 +18,7 @@ class Predator extends LivingCreature {
     }
     move() {
         var fundCords = this.chooseCell(0);
-        var cord = random(fundCords);
+        var cord = Math.floor(Math.random(fundCords));
         if (cord) {
             var x = cord[0];
             var y = cord[1];
@@ -31,7 +32,7 @@ class Predator extends LivingCreature {
     }
     eat() {
         var fundCords = this.chooseCell(2);
-        var cord = random(fundCords);
+        var cord = Math.floor(Math.random(fundCords));
 
         if (cord) {
             var x = cord[0];
@@ -70,7 +71,7 @@ class Predator extends LivingCreature {
     }
     mul() {
         var fundCords = this.chooseCell(0);
-        var cord = random(fundCords);
+        var cord = Math.floor(Math.random(fundCords));
 
         if (cord) {
             var x = cord[0];

@@ -1,4 +1,5 @@
-class Mard extends LivingCreature {
+let LivingCreature = require("./LivingCreature")
+module.exports = class Mard extends LivingCreature {
     constructor(x, y) {
         super(x,y);
         this.x = x;
@@ -19,7 +20,7 @@ class Mard extends LivingCreature {
         var foundCords1 = this.chooseCell(0);
         var foundCords2 = this.chooseCell(1);
         var foundCords = foundCords1.concat(foundCords2);
-        var cord = random(foundCords);
+        var cord = Math.floor(Math.random(fundCords));
 
         if (cord) {
             var x = cord[0];
@@ -38,7 +39,7 @@ class Mard extends LivingCreature {
     }
     eat() {
         var fundCords = this.chooseCell(3);
-        var cord = random(fundCords);
+        var cord = Math.floor(Math.random(fundCords));
 
         if (cord) {
             var x = cord[0];
@@ -75,7 +76,7 @@ class Mard extends LivingCreature {
     }
     mul() {
         var fundCords = this.chooseCell(0);
-        var cord = random(fundCords);
+        var cord = Math.floor(Math.random(fundCords));
 
         if (cord) {
             var x = cord[0];
