@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+// var fs = require("fs");
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
@@ -80,27 +81,30 @@ function creatingObjects() {
     }
 }
 creatingObjects();
-let obj = {
-    'season': "summer",
-    'matrix': matrix,
-}
+
+// let obj = {
+//     'season': "summer",
+//     'matrix': matrix,
+// }
+season = "summer"
 time = 0;
 function game() {
     time++
     if (time % 40 < 7)
     {
-        obj.season = "summer"
+        season = "summer"
     }
     else if (time % 40 < 14)
     {
-        obj.season = "winter"
+        season = "winter"
     }
     else if (time % 40 < 21)
     {
-        obj.season = "autumn"
+        season = "autumn"
     }
-    io.sockets.emit("exanak", obj);
-//console.log(obj.season);
+    io.sockets.emit("season", season);
+    io.sockets.emit('matrix', matrix);
+//console.log(season);
 
 
     if (grassArr[0] !== undefined) {
@@ -136,6 +140,13 @@ function game() {
 }
 
 setInterval(game, 1000)
+
+// var stats = { };
+//     setInterval(function(){
+//         stats.xArr = grassArr.length;
+//         stats.eArr = eatArr.length;
+//         fs.writeFile("stats.json", JSON.stringify(stats))
+//     },10)
 
 io.on('connection', function (socket) {
     socket.on('pushgrass', function () {

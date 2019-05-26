@@ -2,14 +2,11 @@ var socket = io();
 var side = 13;
 var season = "Summer";
 var seasonCount = 0;
-var explosionCount = 0;
-var stats = {};
-var weather = document.getElementById("weather")
+// var explosionCount = 0;
 
-var egh = socket.on("exanak", function (ex) {
-    exanak = ex;
-    weather.innerHTML = exanak;
-});
+// var weather = document.getElementById("weather")
+// weather.innerHTML = season;
+
 
 function setup() {
     frameRate(5);
@@ -27,7 +24,7 @@ function creating(data) {
             "predatorC": gishatichArr.length,
             "waterC": jurArr.length,
             "peopleC": mardArr.length,
-            "explosionC": explosionCount,
+            // "explosionC": explosionCount,
         }
         socket.emit("send stats", stats);
     }
