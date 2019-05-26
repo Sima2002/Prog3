@@ -80,9 +80,29 @@ function creatingObjects() {
     }
 }
 creatingObjects();
-
-
+let obj = {
+    'season': "summer",
+    'matrix': matrix,
+}
+time = 0;
 function game() {
+    time++
+    if (time % 40 < 7)
+    {
+        obj.season = "summer"
+    }
+    else if (time % 40 < 14)
+    {
+        obj.season = "winter"
+    }
+    else if (time % 40 < 21)
+    {
+        obj.season = "autumn"
+    }
+    io.sockets.emit("exanak", obj);
+//console.log(obj.season);
+
+
     if (grassArr[0] !== undefined) {
         for (var i in grassArr) {
             grassArr[i].mul();
@@ -116,3 +136,51 @@ function game() {
 }
 
 setInterval(game, 1000)
+
+io.on('connection', function (socket) {
+    socket.on('pushgrass', function () {
+        for (var i = 0; i < 7; i++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 0) {
+                matrix[y][x] = 1;
+                grassArr.push(new Grass(x, y))
+            }
+        }
+    })
+    socket.on('pushGrassEater', function () {
+        for (var i = 0; i < 7; i++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 0) {
+            matrix[y][x] = 2;
+            eatArr.push(new grassEater(x, y))
+            }
+        }
+    })
+    socket.on('pushPeople', function () {
+        for (var i = 0; i < 7; i++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 0) {
+            matrix[y][x] = 5;
+            mardArr.push(new Mard(x, y))
+            }
+        }
+    })
+    socket.on('killeater', function () {
+        for (var i = 0; i < 7; i++) {
+            var x = Math.floor(Math.random() * matrix[0].length)
+            var y = Math.floor(Math.random() * matrix.length)
+            if (matrix[y][x] = 2) {
+            matrix[y][x] = 0;
+            }
+        }
+    })
+    socket.on("send stats", function (data) {
+        stats.push(data);
+        fs.writeFile('public/stats.json', JSON.stringify(stats));
+        
+    });
+})
+
