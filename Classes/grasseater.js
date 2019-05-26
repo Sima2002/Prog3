@@ -1,4 +1,5 @@
-let LivingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature");
+let random = require('./random');
 module.exports = class Eatgrass extends LivingCreature {
     constructor(x, y) {
         super(x, y);
@@ -6,7 +7,6 @@ module.exports = class Eatgrass extends LivingCreature {
         this.y = y;
         this.multiply = 0;
         this.energy = 0;
-        this.directions = [];
     }
 
     newDirections() {
@@ -18,7 +18,7 @@ module.exports = class Eatgrass extends LivingCreature {
     }
     move() {
         var fundCords = this.chooseCell(0);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(fundCords);
 
         if (cord) {
             var x = cord[0];
@@ -33,7 +33,7 @@ module.exports = class Eatgrass extends LivingCreature {
     }
     eat() {
         var fundCords = this.chooseCell(1);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(fundCords);
 
         if (cord) {
             var x = cord[0];
@@ -67,10 +67,11 @@ module.exports = class Eatgrass extends LivingCreature {
                 this.die();
             }
         }
+        
     }
     mul() {
         var fundCords = this.chooseCell(0);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(fundCords);
 
         if (cord) {
             var x = cord[0];
@@ -82,6 +83,7 @@ module.exports = class Eatgrass extends LivingCreature {
             matrix[y][x] = 2;
             this.multiply = 0;
         }
+        
     }
 
     die() {
@@ -93,4 +95,5 @@ module.exports = class Eatgrass extends LivingCreature {
             }
         }
     }
+    
 }    

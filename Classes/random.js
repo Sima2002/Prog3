@@ -1,12 +1,12 @@
-// function random (items){
-//     var item;
-//     if (Array.isArray(items)) {
-//         item = items[Math.floor(Math.random()*items.length)];
-//     }else if (typeof(items) == 'number') {
-//         item = Math.floor(Math.random()*items);
-//     }
-//     return item;
-// }
+function random(item) {
+    if (typeof (item) != 'string'){
+        if (item.length) {
+            return item[Math.floor(Math.random() * item.length)]
+        }
+        else {
+            return Math.floor(Math.random() * item);
+        }
+    }
+}
 
-
-// module.exports = random;
+module.exports=random

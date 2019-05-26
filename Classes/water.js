@@ -1,11 +1,12 @@
-let LivingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature");
+let random = require('./random');
+let Grass =  require('./grass')
 module.exports = class Jur extends LivingCreature {
     constructor(x, y) {
         super(x, y);
         this.x = x;
         this.y = y;
         this.multiply = 0;
-        this.directions = [];
     }
 
     newDirections() {
@@ -17,7 +18,7 @@ module.exports = class Jur extends LivingCreature {
     }
     move() {
         var fundCords = this.chooseCell(0);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(fundCords);
 
         if (cord) {
             var x = cord[0];

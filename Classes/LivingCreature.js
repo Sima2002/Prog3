@@ -1,11 +1,10 @@
-let LivingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature");
 module.exports = class LivingCreature {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.multiply = 0;
         this.index = index;
-        this.directions = [];
     }
     newDirections() {
         this.directions = [

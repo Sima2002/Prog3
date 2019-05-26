@@ -1,12 +1,12 @@
-let LivingCreature = require("./LivingCreature")
+let LivingCreature = require("./LivingCreature");
+let random = require('./random');
 module.exports = class Mard extends LivingCreature {
     constructor(x, y) {
-        super(x,y);
+        super(x, y);
         this.x = x;
         this.y = y;
         this.multiply = 3;
         this.energy = 3;
-        this.directions = [];
     }
 
     newDirections() {
@@ -20,7 +20,7 @@ module.exports = class Mard extends LivingCreature {
         var foundCords1 = this.chooseCell(0);
         var foundCords2 = this.chooseCell(1);
         var foundCords = foundCords1.concat(foundCords2);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(foundCords);
 
         if (cord) {
             var x = cord[0];
@@ -36,10 +36,12 @@ module.exports = class Mard extends LivingCreature {
             this.x = x;
             this.y = y;
         }
+        //console.log(this.multiply);
+
     }
     eat() {
         var fundCords = this.chooseCell(3);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(fundCords);
 
         if (cord) {
             var x = cord[0];
@@ -76,7 +78,7 @@ module.exports = class Mard extends LivingCreature {
     }
     mul() {
         var fundCords = this.chooseCell(0);
-        var cord = Math.floor(Math.random(fundCords));
+        var cord = random(fundCords);
 
         if (cord) {
             var x = cord[0];

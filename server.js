@@ -1,3 +1,5 @@
+let rows = 55;
+let columns = 70;
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -15,49 +17,40 @@ gishatichArr = [];
 jurArr = [];
 mardArr = [];
 
-let matrix = [];
-// let random = require('./Classes/random');
-// function matrixGenerator(matrixSize, grassArr, eatArr, gishatichArr, jurArr, mardArr) {
-//     for (let y = 0; y < matrixSize; y++) {
-//         matrix[y] = [];
-//         for (let x = 0; x < matrixSize; x++) {
-//             matrix[y][x] = 0;
-//         }
-//     }
-//     for (let y = 0; y < grassArr; y++) {
-//         let customX = Math.floor(Math.random(matrixSize)); // 0 - 39
-//         let customY = Math.floor(Math.random(matrixSize));
-//         matrix[customY][customX] = 1;
-//     }
-//     for (let y = 0; y < eatArr; y++) {
-//         let customX = Math.floor(Math.random(matrixSize));
-//         let customY = Math.floor(Math.random(matrixSize));
-//         matrix[customY][customX] = 2;
-//     }
-//     for (let y = 0; y < gishatichArr; y++) {
-//         let customX = Math.floor(Math.random(matrixSize));
-//         let customY = Math.floor(Math.random(matrixSize));
-//         matrix[customY][customX] = 3;
-//     }
-//     for (let y = 0; y < jurArr; y++) {
-//         let customX = Math.floor(Math.random(matrixSize));
-//         let customY = Math.floor(Math.random(matrixSize));
-//         matrix[customY][customX] = 4;
-//     }
-//     for (let y = 0; y < mardArr; y++) {
-//         let customX = Math.floor(Math.random(matrixSize));
-//         let customY = Math.floor(Math.random(matrixSize));
-//         matrix[customY][customX] = 5;
-//     }
-// }
-// matrixGenerator(10, 5, 1);
+matrix = [];
 
 
-let Grass = require("./Classes/grass.js");
-let Eatgrass = require("./Classes/grasseater.js");
-let Predator = require("./Classes/predator.js");
-let Jur = require("./Classes/water.js");
-let Mard = require("./Classes/people.js");
+for (let y = 0; y < rows; y++) {
+    matrix[y] = [];
+    for (let x = 0; x < columns; x++) {
+        let a = Math.floor(Math.random() * 100);
+        if (a >= 0 && a < 10) {
+            matrix[y][x] = 0;
+        }
+        if (a >= 10 && a < 30) {
+            matrix[y][x] = 1;
+        }
+        else if (a >= 30 && a < 80) {
+            matrix[y][x] = 2;
+        }
+        else if (a >= 80 && a < 87) {
+            matrix[y][x] = 3;
+        }
+        else if (a >= 87 && a < 99) {
+            matrix[y][x] = 4;
+        }
+        else if (a >= 99 && a < 100) {
+            matrix[y][x] = 5;
+        }
+    }
+}
+
+
+let Grass = require('./Classes/grass.js');
+let Eatgrass = require('./Classes/grasseater.js');
+let Predator = require('./Classes/predator.js');
+let Jur = require('./Classes/water.js');
+let Mard = require('./Classes/people.js');
 
 
 function creatingObjects() {
