@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-// var fs = require("fs");
+var fs = require("fs");
 
 app.use(express.static("."));
 app.get('/', function (req, res) {
@@ -90,21 +90,23 @@ season = "summer"
 time = 0;
 function game() {
     time++
-    if (time % 40 < 7)
+    if (time % 7 == 0)
     {
-        season = "summer"
-    }
-    else if (time % 40 < 14)
-    {
+        if (season == "summer")
         season = "winter"
-    }
-    else if (time % 40 < 21)
+    
+    else if (season == "winter")
     {
         season = "autumn"
     }
-    io.sockets.emit("season", season);
-    io.sockets.emit('matrix', matrix);
-//console.log(season);
+    else if (season == "autumn")
+    {
+        season = "summer"
+    }
+    else {
+        time = 0;
+    }
+}
 
 
     if (grassArr[0] !== undefined) {
@@ -133,13 +135,22 @@ function game() {
         }
     }
     let sendData = {
-        matrix: matrix
+        matrix: matrix,
+        season: season
     }
 
     io.sockets.emit("data", sendData);
 }
 
 setInterval(game, 1000)
+
+// var statistics = {};
+//  setInterval(function(){
+//      statistics.xArr = grassArr.length;
+//      statistics.eArr = eatArr.length;
+
+//     fs.writeFile("statistics.json", JSON.stringify(statistics))
+//  },10)
 
 // var stats = { };
 //     setInterval(function(){
